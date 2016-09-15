@@ -1,13 +1,16 @@
 <?php
 
-namespace Iconneqt\RestApi;
+namespace Iconneqt\Api\Rest\Client;
+
+use Iconneqt\Api\Rest\Client\StatusCodeException;
 
 /**
- * Description of IconneqtRestApi
+ * Low-level connection to the Iconneqt REST API
  *
- * @author Martijn
+ * @copyright (c) 2016, Advanced CRMMail Technology B.V., Netherlands
+ * @author Martijn W. van der Lee
  */
-class IconneqtRestApi
+class Client
 {
 
 	const GET = 'GET';
@@ -35,7 +38,7 @@ class IconneqtRestApi
 	 * @param boolean $associative_return set to true to return an associative array, otherwise an object will be returned.
 	 * @return mixed
 	 * @throws Exception
-	 * @throws HttpStatusCodeException
+	 * @throws StatusCodeException
 	 */
 	public function call($method, $path, $post_data = null, $associative_return = false)
 	{
@@ -68,7 +71,7 @@ class IconneqtRestApi
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		if ($httpcode >= 400) {
 			preg_match('~HTTP/\S+ ([0-9]{3}) (.+)~m', $headers, $status);
-			throw new HttpStatusCodeException($status[2], $httpcode);
+			throw new StatusCodeException($status[2], $httpcode);
 		}
 
 		curl_close($ch);
@@ -87,7 +90,7 @@ class IconneqtRestApi
 	{
 		try {
 			return $this->call(self::GET, $path, null, $associative_return);
-		} catch (HttpStatusCodeException $e) {
+		} catch (StatusCodeException $e) {
 			if ($e->getCode() !== 404) {
 				throw $e;
 			}
@@ -107,7 +110,7 @@ class IconneqtRestApi
 	{
 		try {
 			return $this->call(self::DELETE, $path, null, $associative_return);
-		} catch (HttpStatusCodeException $e) {
+		} catch (StatusCodeException $e) {
 			if ($e->getCode() !== 404) {
 				throw $e;
 			}
@@ -128,7 +131,7 @@ class IconneqtRestApi
 	{
 		try {
 			return $this->call(self::PATCH, $path, $data, $associative_return);
-		} catch (HttpStatusCodeException $e) {
+		} catch (StatusCodeException $e) {
 			if ($e->getCode() !== 404) {
 				throw $e;
 			}
@@ -149,7 +152,7 @@ class IconneqtRestApi
 	{
 		try {
 			return $this->call(self::PUT, $path, $data, $associative_return);
-		} catch (HttpStatusCodeException $e) {
+		} catch (StatusCodeException $e) {
 			if ($e->getCode() !== 404) {
 				throw $e;
 			}
@@ -170,7 +173,7 @@ class IconneqtRestApi
 	{
 		try {
 			return $this->call(self::POST, $path, $data, $associative_return);
-		} catch (HttpStatusCodeException $e) {
+		} catch (StatusCodeException $e) {
 			if ($e->getCode() !== 404) {
 				throw $e;
 			}
