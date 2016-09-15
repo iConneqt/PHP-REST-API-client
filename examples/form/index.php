@@ -3,13 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <title>Test iConneqt API</title>
+		<link href='../common.css' rel="stylesheet" type='text/css'/>
     </head>
     <body>
 		<?php
 		/**
 		 * This example demonstrates getting information about subscriber lists
 		 */
-		require_once dirname(__DIR__) . '/common.php';
+		require_once '../common.php';
 
 		$iconneqt = new Iconneqt\Api\Rest\Iconneqt(EXAMPLE_URL, EXAMPLE_USERNAME, EXAMPLE_PASSWORD);
 
@@ -27,17 +28,18 @@
 			try {
 				$list = $iconneqt->getList(EXAMPLE_LISTID);
 				$subscriber = $list->addSubscriber($_POST['email'], true, $fields);
-				echo "<div style='background:#2ecc71'>Added subscriber #{$subscriber->getId()}</div>";
+				echo "<div class='success'>Added subscriber #{$subscriber->getId()}</div>";
 			} catch (Exception $e) {
-				echo "<div style='background:#e74c3c'>Could not add subscriber: {$e->getCode()} {$e->getMessage()}</div>";
+				echo "<div class='error'>Could not add subscriber: {$e->getCode()} {$e->getMessage()}</div>";
 			}
 		}
 		?>
 
 		<h1>Lists</h1>
+		<ol>
 		<?php
 		foreach ($iconneqt->getLists() as $list) {
-			echo "<h2>List named '{$list->getName()}' (#{$list->getId()}) has {$list->getFieldCount()} fields and {$list->getSubscriberCount()} subscribers.</h2>";
+			echo "<li>List '{$list->getName()}' (#{$list->getId()}) has {$list->getFieldCount()} fields and {$list->getSubscriberCount()} subscribers.</li>";
 
 			echo "<ol>";
 			foreach ($list->getSubscribers() as $subscriber) {
@@ -52,17 +54,18 @@
 			echo "</ol>";
 		}
 		?>
+		</ol>
 
 		<hr/>
 
-		<h2>Add subscriber to list #92</h2>
-		<form method="post">
-			<div>E-mail address: <input name="email"/></div>
+		<h1>Add subscriber to list #92</h1>
+		<form method='post'>
+			<div><label>E-mail address</label><input name='email' placeholder='email@domain.tld'/></div>
 			<?php
 			foreach ($iconneqt->getListFields(EXAMPLE_LISTID) as $field) {
 				switch ($field->getType()) {
 					case 'text':
-						echo "<div>{$field->getName()} (#{$field->getId()}): <input name=\"{$field->getId()}\"/></div>";
+						echo "<div><label>{$field->getName()} (#{$field->getId()})</label><input name='{$field->getId()}' placeholder='{$field->getType()}'/></div>";
 						break;
 
 					default:
