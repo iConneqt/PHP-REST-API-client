@@ -2,6 +2,8 @@ iConneqt REST API PHP Client
 ============================
 A PHP class library for the iConneqt REST API.
 
+[![Build Status](https://travis-ci.org/iConneqt/PHP-REST-API-client.svg?branch=master)](https://travis-ci.org/iConneqt/PHP-REST-API-client)
+
 Documentation
 -------------
 The API documentation can be found here:
