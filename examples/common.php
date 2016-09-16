@@ -3,14 +3,13 @@
 /**
  * This file contains code that is required by all the examples
  */
+require_once __DIR__ . '/../src/autoloader.php';
 
-define('EXAMPLE_URL', 'https://demo.iconneqt.nl');
-define('EXAMPLE_USERNAME', 'restapiuser');
-define('EXAMPLE_PASSWORD', 'fCFv6N3Ayz9faW7MGqkguW7');
-
-spl_autoload_register(function ($classname) {
-	$file = dirname(__DIR__) . '/src/' . str_replace('\\', DIRECTORY_SEPARATOR, $classname) . '.php';
-	if (file_exists($file)) {
-		require_once $file;
+$file = __DIR__ . '/auth.ini';
+if (file_exists($file)) {
+	foreach (parse_ini_file($file) as $key => $value) {
+		define('ICONNEQT_' . strtoupper($key), $value);
 	}
-});
+} else {
+	die("Please copy the auth.example.ini file to auth.ini and set your username and password.");
+}

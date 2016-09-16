@@ -84,4 +84,12 @@ class MailingList extends AbstractResource
 		return $this->iconneqt->getListSubscriber($this->id, $result->subscriberid);
 	}
 
+	public function getSubscriber($subscriber)
+	{
+		return $this->iconneqt->getListSubscriber($this->id, $subscriber);
+	}	
+	
+	public function hasSubscriber($subscriber) {
+		return $this->iconneqt->getListSubscriber($this->id, $subscriber);
+	}
 }

@@ -6,9 +6,9 @@
 
 require_once dirname(__DIR__) . '/common.php';
 
-$iconneqt = new Iconneqt\Api\Rest\Client\Client(EXAMPLE_URL, EXAMPLE_USERNAME, EXAMPLE_PASSWORD);
+$client = new Iconneqt\Api\Rest\Client\Client(ICONNEQT_URL, ICONNEQT_USERNAME, ICONNEQT_PASSWORD);
 
-$results = $iconneqt->get('lists');
+$results = $client->get('lists');
 
 var_dump($results);
 

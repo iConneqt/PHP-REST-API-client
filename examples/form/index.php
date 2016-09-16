@@ -8,11 +8,15 @@
     <body>
 		<?php
 		/**
-		 * This example demonstrates getting information about subscriber lists
+		 * This example demonstrates a simple subscription form with partial
+		 * discovery of list and field information.
+		 * If you already know all the ID's, you can hardcode them if you want.
+		 * Alternatively, you can use the names of the fields instead of the
+		 * ID's when adding a subscriber.
 		 */
 		require_once '../common.php';
 
-		$iconneqt = new Iconneqt\Api\Rest\Iconneqt(EXAMPLE_URL, EXAMPLE_USERNAME, EXAMPLE_PASSWORD);
+		$iconneqt = new Iconneqt\Api\Rest\Iconneqt(ICONNEQT_URL, ICONNEQT_USERNAME, ICONNEQT_PASSWORD);
 
 		define('EXAMPLE_LISTID', 92); // This should be a user setting
 

@@ -1,15 +1,18 @@
+* {
+	font:			16px "Segoe UI", Verdana, Arial, Helvetica, sans-serif;
+}
+
 html {
 	margin:			20px;
 	background:		#ecf0f1;
-	font:			16px "Segoe UI", Verdana, Arial, Helvetica, sans-serif;
 	color:			#2c3e50;
 }
 
 button,
+select,
 input {
-	font-size:		16px;
-	padding:		2px 4px;
-	margin:			2px;
+	padding:		.2em .4em;
+	margin:			.2em 0 .2em .4em;
 }
 
 label {
@@ -22,6 +25,14 @@ label:after {
 	content: ':'
 }
 
+.error,
+.success,
+.warning {
+	font-size:		120%;
+	padding:		.5em 1em;
+	font-weight:	bold;
+}
+	
 .error {
 	background:		#e74c3c;
 	color:			white;
@@ -30,4 +41,8 @@ label:after {
 .success {
 	background:		#2ecc71;
 	color:			white;	
+}
+
+.warning {
+	background:		#f1c40f;
 }
