@@ -15,6 +15,7 @@ class ListField extends AbstractField
 	private $default;
 	private $required;
 	private $settings;
+	private $role;
 
 	public function __construct(\Iconneqt\Api\Rest\Iconneqt $iconneqt, $field)
 	{
@@ -25,6 +26,7 @@ class ListField extends AbstractField
 		$this->default = $field->default;
 		$this->required = $field->required;
 		$this->settings = $field->settings;
+		$this->role = $field->role;
 	}
 
 	public function getDate()
@@ -50,6 +52,11 @@ class ListField extends AbstractField
 	public function getSettings()
 	{
 		return $this->settings;
+	}
+
+	public function getRole()
+	{
+		return $this->role;
 	}
 
 }
