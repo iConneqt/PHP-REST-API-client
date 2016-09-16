@@ -69,7 +69,7 @@
 			foreach ($iconneqt->getListFields(EXAMPLE_LISTID) as $field) {
 				switch ($field->getType()) {
 					case 'text':
-						echo "<div><label>{$field->getName()} (#{$field->getId()})</label><input name='{$field->getId()}' placeholder='{$field->getType()}'/></div>";
+						echo "<div><label>{$field->getName()} (#{$field->getId()})</label><input name='{$field->getId()}' placeholder='type: {$field->getType()}, role: {$field->getRole()}'/></div>";
 						break;
 
 					default:
