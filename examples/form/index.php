@@ -66,7 +66,27 @@
 		<form method='post'>
 			<div><label>E-mail address</label><input name='email' placeholder='email@domain.tld'/></div>
 			<?php
-			foreach ($iconneqt->getListFields(EXAMPLE_LISTID) as $field) {
+			// Get all* fields (* = first 100)
+			$fields = $iconneqt->getListFields(EXAMPLE_LISTID);
+			
+			// List of roles to use
+			$roles = array(
+				'namefirst',
+				'namelast',
+			);
+			
+			// Remove any fields that do not have a role that we want to use
+			$fields = array_filter($fields, function($field) use($roles) {
+				return in_array($field->getRole(), $roles);
+			});
+			
+			// Sort fields by the order or roles
+			uasort($fields, function($a, $b) use($roles) {
+				return array_search($a->getRole(), $roles) - array_search($b->getRole(), $roles);
+			});
+			
+			// Display the fields
+			foreach ($fields as $field) {
 				switch ($field->getType()) {
 					case 'text':
 						echo "<div><label>{$field->getName()} (#{$field->getId()})</label><input name='{$field->getId()}' placeholder='type: {$field->getType()}, role: {$field->getRole()}'/></div>";
