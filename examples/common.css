@@ -1,8 +1,9 @@
 * {
-	font:			16px "Segoe UI", Verdana, Arial, Helvetica, sans-serif;
+	font-family:	"Segoe UI", Verdana, Arial, Helvetica, sans-serif;
 }
 
 html {
+	font-size:		16px;
 	margin:			20px;
 	background:		#ecf0f1;
 	color:			#2c3e50;
