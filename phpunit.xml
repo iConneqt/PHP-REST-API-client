@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="src/autoloader.php" colors="true">
+<phpunit bootstrap="examples/common.php" colors="true">
   <testsuites>
     <testsuite name="iConneqt REST API client">
       <directory>tests</directory>
