@@ -4,7 +4,9 @@ namespace Iconneqt\Api\Rest;
 
 /**
  * High-level API abstraction
+ * 
  * @copyright (c) 2016, Advanced CRMMail Technology B.V., Netherlands
+ * @license MIT
  * @author Martijn W. van der Lee
  */
 class Iconneqt

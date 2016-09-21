@@ -5,7 +5,9 @@ namespace Iconneqt\Api\Rest\Resources;
 /**
  * Basic Mailing List object
  * 
- * @author Martijn W. van der Lee
+ * @copyright (c) 2016, Advanced CRMMail Technology B.V., Netherlands
+ * @license MIT
+ * @author Martijn W. van der Lee 
  */
 class MailingList extends AbstractResource
 {
@@ -64,13 +66,14 @@ class MailingList extends AbstractResource
 	{
 		return $this->iconneqt->getListSubscriberCount($this->id);
 	}
-	
-	public function addSubscriber($email, $is_confirmed = true, $fields = []) {
+
+	public function addSubscriber($email, $is_confirmed = true, $fields = [])
+	{
 		$subscriber = [
-			'emailaddress'	=> $email,			
+			'emailaddress' => $email,
 			'fields' => $fields,
 		];
-		
+
 		if (!$is_confirmed) {
 			$subscriber = array_merge($subscriber, [
 				'confirmed' => false,
@@ -78,18 +81,20 @@ class MailingList extends AbstractResource
 				'confirmip' => null,
 			]);
 		}
-		
+
 		$result = $this->iconneqt->postListSubscriber($this->id, $subscriber);
-		
+
 		return $this->iconneqt->getListSubscriber($this->id, $result->subscriberid);
 	}
 
 	public function getSubscriber($subscriber)
 	{
 		return $this->iconneqt->getListSubscriber($this->id, $subscriber);
-	}	
-	
-	public function hasSubscriber($subscriber) {
+	}
+
+	public function hasSubscriber($subscriber)
+	{
 		return $this->iconneqt->getListSubscriber($this->id, $subscriber);
 	}
+
 }

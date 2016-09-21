@@ -8,6 +8,7 @@ use Iconneqt\Api\Rest\Client\StatusCodeException;
  * Low-level connection to the Iconneqt REST API
  *
  * @copyright (c) 2016, Advanced CRMMail Technology B.V., Netherlands
+ * @license MIT
  * @author Martijn W. van der Lee
  */
 class Client

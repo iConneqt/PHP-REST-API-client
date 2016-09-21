@@ -5,7 +5,9 @@ namespace Iconneqt\Api\Rest\Resources;
 /**
  * Basic Subscriber object
  * 
- * @author Martijn W. van der Lee
+ * @copyright (c) 2016, Advanced CRMMail Technology B.V., Netherlands
+ * @license MIT
+ * @author Martijn W. van der Lee 
  */
 class Subscriber extends AbstractResource
 {
@@ -82,11 +84,10 @@ class Subscriber extends AbstractResource
 	{
 		return $this->iconneqt->getList($listid);
 	}
-	
+
 	public function getFields()
 	{
 		return $this->iconneqt->getSubscriberFields($this->id);
 	}
-	
 
 }

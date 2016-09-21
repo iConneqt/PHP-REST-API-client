@@ -5,7 +5,9 @@ namespace Iconneqt\Api\Rest\Resources;
 /**
  * Shared functionality of all resources
  * 
- * @author Martijn W. van der Lee
+ * @copyright (c) 2016, Advanced CRMMail Technology B.V., Netherlands
+ * @license MIT
+ * @author Martijn W. van der Lee 
  */
 class AbstractResource
 {
