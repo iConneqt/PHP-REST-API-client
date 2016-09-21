@@ -1,0 +1,20 @@
+{
+	"name": "iconneqt/rest-api-client",
+	"description": "A PHP class library for the iConneqt REST API.",
+	"type": "library",
+	"keywords": ["iconneqt", "rest", "api"],
+	"homepage": "https://github.com/iConneqt/PHP-REST-API-client",
+	"license": "MIT",
+	"support": {
+		"issues": "https://github.com/iConneqt/PHP-REST-API-client/issues",
+		"source": "https://github.com/iConneqt/PHP-REST-API-client"
+	},
+	"require": {
+		"php": ">=5.4.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Iconneqt\\": "src/"
+		}
+	}
+}
