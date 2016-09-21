@@ -9,8 +9,14 @@ Copyright &copy; 2016 Advanced CRMMail Technology B.V.
 
 Documentation
 -------------
-The API documentation can be found here:
-[http://test.iconneqt.nl/api/docs/](http://test.iconneqt.nl/api/docs/).
+The API documentation can be found here: [http://test.iconneqt.nl/api/docs/](http://test.iconneqt.nl/api/docs/).
+
+Installation
+------------
+Either use the included autoloader in `src/autoloader.php` or install using
+Composer:
+
+	composer require iconneqt/rest-api-client
 
 Classes
 -------
