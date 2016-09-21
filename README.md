@@ -2,7 +2,7 @@ iConneqt REST API PHP Client
 ============================
 A PHP class library for the iConneqt REST API.
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
+[![license](https://img.shields.io/github/license/iConneqt/PHP-REST-API-client.svg)]()
 [![Build Status](https://travis-ci.org/iConneqt/PHP-REST-API-client.svg?branch=master)](https://travis-ci.org/iConneqt/PHP-REST-API-client)
 
 Copyright &copy; 2016 Advanced CRMMail Technology B.V.
