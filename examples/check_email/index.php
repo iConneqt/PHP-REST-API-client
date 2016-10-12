@@ -28,6 +28,7 @@
 				}
 			} catch (Exception $e) {
 				echo "<div class='error'>Could not check email</div>";
+				var_dump($e);
 			}
 		}
 		?>
