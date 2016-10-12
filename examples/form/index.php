@@ -18,7 +18,7 @@
 
 		$iconneqt = new Iconneqt\Api\Rest\Iconneqt(ICONNEQT_URL, ICONNEQT_USERNAME, ICONNEQT_PASSWORD);
 
-		define('EXAMPLE_LISTID', 92); // This should be a user setting
+		define('EXAMPLE_LISTID', ICONNEQT_LIST); // This should be a user setting
 
 		if (isset($_POST['addSubscriber'])) {
 			
