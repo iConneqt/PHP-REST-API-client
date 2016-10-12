@@ -47,14 +47,14 @@ class MailingList extends AbstractResource
 		return $this->userid;
 	}
 
-	public function getFields()
+	public function getFields($offset = 0, $limit = 100)
 	{
-		return $this->iconneqt->getListFields($this->id);
+		return $this->iconneqt->getListFields($this->id, $offset, $limit);
 	}
 
-	public function getSubscribers()
+	public function getSubscribers($offset = 0, $limit = 100)
 	{
-		return $this->iconneqt->getListSubscribers($this->id);
+		return $this->iconneqt->getListSubscribers($this->id, $offset, $limit);
 	}
 
 	public function getFieldCount()

@@ -46,7 +46,7 @@
 			echo "<li>List '{$list->getName()}' (#{$list->getId()}) has {$list->getFieldCount()} fields and {$list->getSubscriberCount()} subscribers.</li>";
 
 			echo "<ol>";
-			foreach ($list->getSubscribers() as $subscriber) {
+			foreach ($list->getSubscribers(0, 10) as $subscriber) {
 				echo "<li>{$subscriber->getEmail()} (#{$subscriber->getId()})</li>";
 
 				echo "<ul>";
