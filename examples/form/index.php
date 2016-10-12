@@ -18,8 +18,6 @@
 
 		$iconneqt = new Iconneqt\Api\Rest\Iconneqt(ICONNEQT_URL, ICONNEQT_USERNAME, ICONNEQT_PASSWORD);
 
-		define('EXAMPLE_LISTID', ICONNEQT_LIST); // This should be a user setting
-
 		if (isset($_POST['addSubscriber'])) {
 			
 			$fields = [];
@@ -30,7 +28,7 @@
 			}
 			
 			try {
-				$list = $iconneqt->getList(EXAMPLE_LISTID);
+				$list = $iconneqt->getList(ICONNEQT_LIST);
 				$subscriber = $list->addSubscriber($_POST['email'], true, $fields);
 				echo "<div class='success'>Added subscriber #{$subscriber->getId()}</div>";
 			} catch (Exception $e) {
@@ -62,12 +60,12 @@
 
 		<hr/>
 
-		<h1>Add subscriber to list #92</h1>
+		<h1>Add subscriber to list #<?php echo ICONNEQT_LIST; ?></h1>
 		<form method='post'>
 			<div><label>E-mail address</label><input name='email' placeholder='email@domain.tld'/></div>
 			<?php
 			// Get all* fields (* = first 100)
-			$fields = $iconneqt->getListFields(EXAMPLE_LISTID);
+			$fields = $iconneqt->getListFields(ICONNEQT_LIST);
 			
 			// List of roles to use
 			$roles = array(
