@@ -47,3 +47,10 @@ label:after {
 .warning {
 	background:		#f1c40f;
 }
+
+.columns {
+	font-size:		65%;
+	-webkit-columns: 150px 5; /* Chrome, Safari, Opera */
+    -moz-columns: 150px 5; /* Firefox */
+    columns: 150px 5;
+}

@@ -40,29 +40,28 @@
 		<h1>Lists</h1>
 		<ol>
 		<?php
-		foreach ($iconneqt->getLists() as $list) {
+			$list = $iconneqt->getList(ICONNEQT_LIST);
 			echo "<li>List '{$list->getName()}' (#{$list->getId()}) has {$list->getFieldCount()} fields and {$list->getSubscriberCount()} subscribers.</li>";
 
 			echo "<ol>";
 			foreach ($list->getSubscribers(0, 10) as $subscriber) {
 				echo "<li>{$subscriber->getEmail()} (#{$subscriber->getId()})</li>";
 
-				echo "<ul>";
+				echo "<ul class='columns'>";
 				foreach ($subscriber->getFields() as $field) {
 					echo "<li>{$field->getName()}: {$field->getValue()}</li>";
 				}
 				echo "</ul>";
 			}
 			echo "</ol>";
-		}
 		?>
 		</ol>
 
 		<hr/>
 
-		<h1>Add subscriber to list #<?php echo ICONNEQT_LIST; ?></h1>
+		<h1>Add subscriber to list "<?php echo $list->getName(); ?>" (#<?php echo ICONNEQT_LIST; ?>)</h1>
 		<form method='post'>
-			<div><label>E-mail address</label><input name='email' placeholder='email@domain.tld'/></div>
+			<div><label>E-mail address</label><input name='email' type='email' placeholder='email@domain.tld'/></div>
 			<?php
 			// Get all* fields (* = first 100)
 			$fields = $iconneqt->getListFields(ICONNEQT_LIST);
@@ -70,7 +69,13 @@
 			// List of roles to use
 			$roles = array(
 				'namefirst',
+				'namelastprefix',
 				'namelast',
+				'postalcode',
+				'street',
+				'streetnumber',
+				'city',
+				'region',
 			);
 			
 			// Remove any fields that do not have a role that we want to use
