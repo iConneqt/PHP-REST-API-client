@@ -41,7 +41,7 @@
 		<ol>
 		<?php
 			$list = $iconneqt->getList(ICONNEQT_LIST);
-			echo "<li>List '{$list->getName()}' (#{$list->getId()}) has {$list->getFieldCount()} fields and {$list->getSubscriberCount()} subscribers.</li>";
+			echo "<li>List '{$list->getName()}' (#{$list->getId()}) has {$list->getFieldCount()} fields and {$list->getSubscriberCount()} subscribers. (first 10 shown)</li>";
 
 			echo "<ol>";
 			foreach ($list->getSubscribers(0, 10) as $subscriber) {
