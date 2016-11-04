@@ -180,4 +180,15 @@ class Iconneqt
 		return $this->client->post("lists/{$list}/subscribers", $data);
 	}
 
+	/**
+	 * Create or update a subscriber to a list
+	 * @param integer $list
+	 * @param array $data
+	 * @return boolean
+	 */
+	public function putListSubscriber($list, $data)
+	{
+		return $this->client->put("lists/{$list}/subscribers", $data);
+	}
+
 }

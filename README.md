@@ -1,5 +1,7 @@
 iConneqt REST API PHP Client
 ============================
+Version 1.0.2
+
 A PHP class library for the iConneqt REST API.
 
 [![license](https://img.shields.io/github/license/iConneqt/PHP-REST-API-client.svg)]()

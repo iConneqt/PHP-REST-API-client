@@ -67,6 +67,13 @@ class MailingList extends AbstractResource
 		return $this->iconneqt->getListSubscriberCount($this->id);
 	}
 
+	/**
+	 * Create a subscriber
+	 * @param string $email
+	 * @param bool $is_confirmed
+	 * @param array $fields
+	 * @return integer subscriberid
+	 */
 	public function addSubscriber($email, $is_confirmed = true, $fields = [])
 	{
 		$subscriber = [
@@ -83,6 +90,33 @@ class MailingList extends AbstractResource
 		}
 
 		$result = $this->iconneqt->postListSubscriber($this->id, $subscriber);
+
+		return $this->iconneqt->getListSubscriber($this->id, $result->subscriberid);
+	}
+
+	/**
+	 * Create or update a subscriber
+	 * @param string $email
+	 * @param bool $is_confirmed
+	 * @param array $fields
+	 * @return integer subscriberid
+	 */
+	public function setSubscriber($email, $is_confirmed = true, $fields = [])
+	{
+		$subscriber = [
+			'emailaddress' => $email,
+			'fields' => $fields,
+		];
+
+		if (!$is_confirmed) {
+			$subscriber = array_merge($subscriber, [
+				'confirmed' => false,
+				'confirmdate' => null,
+				'confirmip' => null,
+			]);
+		}
+
+		$result = $this->iconneqt->putListSubscriber($this->id, $subscriber);
 
 		return $this->iconneqt->getListSubscriber($this->id, $result->subscriberid);
 	}

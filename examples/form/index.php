@@ -29,7 +29,13 @@
 			
 			try {
 				$list = $iconneqt->getList(ICONNEQT_LIST);
-				$subscriber = $list->addSubscriber($_POST['email'], true, $fields);
+				
+				if (isset($_POST['overwrite'])) {
+					$subscriber = $list->setSubscriber($_POST['email'], true, $fields);
+				} else {
+					$subscriber = $list->addSubscriber($_POST['email'], true, $fields);
+				}
+				
 				echo "<div class='success'>Added subscriber #{$subscriber->getId()}</div>";
 			} catch (Exception $e) {
 				echo "<div class='error'>Could not add subscriber: {$e->getCode()} {$e->getMessage()}</div>";
@@ -61,45 +67,46 @@
 
 		<h1>Add subscriber to list "<?php echo $list->getName(); ?>" (#<?php echo ICONNEQT_LIST; ?>)</h1>
 		<form method='post'>
+			<div><label>Overwrite?</label><input name='overwrite' id='overwrite' type='checkbox' value='1'/></div>
 			<div><label>E-mail address</label><input name='email' type='email' placeholder='email@domain.tld'/></div>
 			<?php
-			// Get all* fields (* = first 100)
-			$fields = $iconneqt->getListFields(ICONNEQT_LIST);
-			
-			// List of roles to use
-			$roles = array(
-				'namefirst',
-				'namelastprefix',
-				'namelast',
-				'postalcode',
-				'street',
-				'streetnumber',
-				'city',
-				'region',
-			);
-			
-			// Remove any fields that do not have a role that we want to use
-			$fields = array_filter($fields, function($field) use($roles) {
-				return in_array($field->getRole(), $roles);
-			});
-			
-			// Sort fields by the order or roles
-			uasort($fields, function($a, $b) use($roles) {
-				return array_search($a->getRole(), $roles) - array_search($b->getRole(), $roles);
-			});
-			
-			// Display the fields
-			foreach ($fields as $field) {
-				switch ($field->getType()) {
-					case 'text':
-						echo "<div><label>{$field->getName()} (#{$field->getId()})</label><input name='{$field->getId()}' placeholder='type: {$field->getType()}, role: {$field->getRole()}'/></div>";
-						break;
+				// Get all* fields (* = first 100)
+				$fields = $iconneqt->getListFields(ICONNEQT_LIST);
 
-					default:
-						echo "<div>Fields of type '{$field->getType()}' are not supported by this example</div>";
-						break;
+				// List of roles to use
+				$roles = array(
+					'namefirst',
+					'namelastprefix',
+					'namelast',
+					'postalcode',
+					'street',
+					'streetnumber',
+					'city',
+					'region',
+				);
+
+				// Remove any fields that do not have a role that we want to use
+				$fields = array_filter($fields, function($field) use($roles) {
+					return in_array($field->getRole(), $roles);
+				});
+
+				// Sort fields by the order or roles
+				uasort($fields, function($a, $b) use($roles) {
+					return array_search($a->getRole(), $roles) - array_search($b->getRole(), $roles);
+				});
+
+				// Display the fields
+				foreach ($fields as $field) {
+					switch ($field->getType()) {
+						case 'text':
+							echo "<div><label>{$field->getName()} (#{$field->getId()})</label><input name='{$field->getId()}' placeholder='type: {$field->getType()}, role: {$field->getRole()}'/></div>";
+							break;
+
+						default:
+							echo "<div>Fields of type '{$field->getType()}' are not supported by this example</div>";
+							break;
+					}
 				}
-			}
 			?>
 			<button type="submit" name="addSubscriber">Add subscriber</button>
 		</form>
