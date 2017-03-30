@@ -20,6 +20,41 @@ class Iconneqt
 	}
 
 	/**
+	 * Get all fields that can be accessed using the credentials used.
+	 * @param integer $offset
+	 * @param integer $limit
+	 * @return \Iconneqt\Api\Rest\Resources\Field[]
+	 */
+	public function getFields($offset = 0, $limit = 100)
+	{
+		$fields = [];
+		foreach ($this->client->get("fields?offset={$offset}&limit={$limit}") as $field) {
+			$fields[] = new Resources\Field($this, $field);
+		}
+		return $fields;
+	}	
+
+	/**
+	 * Get the number of fields that can be accessed using the credentials used.
+	 * @return integer
+	 */
+	public function getFieldCount()
+	{
+		return $this->client->get("fields/count");
+	}	
+	
+	/**
+	 * Get a specific field.
+	 * @param integer $field
+	 * @return \Iconneqt\Api\Rest\Resources\Field|null
+	 */
+	public function getField($field)
+	{
+		$result = $this->client->get("fields/{$field}");
+		return $result ? new Resources\Field($this, $result) : null;
+	}	
+	
+	/**
 	 * Get all Lists that can be accessed using the credentials used.
 	 * @param integer $offset
 	 * @param integer $limit
@@ -90,7 +125,7 @@ class Iconneqt
 	{
 		$result = $this->client->get("lists/{$list}/fields/{$field}");
 		return $result ? new Resources\ListField($this, $result) : null;
-	}
+	}	
 
 	/**
 	 * Delete a specific field from a list.
