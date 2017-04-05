@@ -72,9 +72,8 @@ class Client
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		if ($httpcode >= 400) {
 			preg_match('~HTTP/\S+ ([0-9]{3}) (.+)~m', $headers, $status);
-			$message = trim($status[2]);			
 			$error = json_decode($body);
-			throw new StatusCodeException($message, $httpcode, isset($error->description) ? $error->description : null);
+			throw new StatusCodeException(trim($status[2]), $httpcode, isset($error->description) ? $error->description : null);
 		}
 
 		curl_close($ch);
