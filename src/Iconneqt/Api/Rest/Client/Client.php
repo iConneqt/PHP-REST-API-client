@@ -64,15 +64,17 @@ class Client
 		}
 
 		if (($result = curl_exec($ch)) === false) {
-			throw new Exception(curl_error($ch), curl_errno($ch));
+			throw new \Exception(curl_error($ch), curl_errno($ch));
 		};
 
 		list($headers, $body) = explode("\r\n\r\n", $result);
-
+		
 		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		if ($httpcode >= 400) {
 			preg_match('~HTTP/\S+ ([0-9]{3}) (.+)~m', $headers, $status);
-			throw new StatusCodeException($status[2], $httpcode);
+			$message = trim($status[2]);			
+			$error = json_decode($body);
+			throw new StatusCodeException($message, $httpcode, isset($error->description) ? $error->description : null);
 		}
 
 		curl_close($ch);
