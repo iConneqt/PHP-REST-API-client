@@ -1,6 +1,6 @@
 iConneqt REST API PHP Client
 ============================
-Version 1.0.4
+Version 1.0.5
 
 A PHP class library for the iConneqt REST API.
 

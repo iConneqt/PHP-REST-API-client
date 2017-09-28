@@ -13,7 +13,6 @@ use Iconneqt\Api\Rest\Client\StatusCodeException;
  */
 class Client
 {
-
 	const GET = 'GET';
 	const POST = 'POST';
 	const PATCH = 'PATCH';
@@ -86,14 +85,15 @@ class Client
 	 * @param string $path
 	 * @param mixed $default
 	 * @param boolean $associative_return
-	 * @return mixwed
+	 * @param boolean $default_on_404 If `false`, throws an exception when 404
+	 * @return mixed
 	 */
-	public function get($path, $default = null, $associative_return = false)
+	public function get($path, $default = null, $associative_return = false, $default_on_404 = true)
 	{
 		try {
 			return $this->call(self::GET, $path, null, $associative_return);
 		} catch (StatusCodeException $e) {
-			if ($e->getCode() !== 404) {
+			if ($e->getCode() !== 404 || !$default_on_404) {
 				throw $e;
 			}
 		}
@@ -106,14 +106,15 @@ class Client
 	 * @param string $path
 	 * @param mixed $default
 	 * @param boolean $associative_return
-	 * @return mixwed
+	 * @param boolean $default_on_404 If `false`, throws an exception when 404
+	 * @return mixed
 	 */
-	public function delete($path, $default = null, $associative_return = false)
+	public function delete($path, $default = null, $associative_return = false, $default_on_404 = true)
 	{
 		try {
 			return $this->call(self::DELETE, $path, null, $associative_return);
 		} catch (StatusCodeException $e) {
-			if ($e->getCode() !== 404) {
+			if ($e->getCode() !== 404 || !$default_on_404) {
 				throw $e;
 			}
 		}
@@ -127,14 +128,15 @@ class Client
 	 * @param array $data
 	 * @param mixed $default
 	 * @param boolean $associative_return
-	 * @return mixwed
+	 * @param boolean $default_on_404 If `false`, throws an exception when 404
+	 * @return mixed
 	 */
-	public function patch($path, $data = null, $default = null, $associative_return = false)
+	public function patch($path, $data = null, $default = null, $associative_return = false, $default_on_404 = true)
 	{
 		try {
 			return $this->call(self::PATCH, $path, $data, $associative_return);
 		} catch (StatusCodeException $e) {
-			if ($e->getCode() !== 404) {
+			if ($e->getCode() !== 404 || !$default_on_404) {
 				throw $e;
 			}
 		}
@@ -148,14 +150,15 @@ class Client
 	 * @param array $data
 	 * @param mixed $default
 	 * @param boolean $associative_return
-	 * @return mixwed
+	 * @param boolean $default_on_404 If `false`, throws an exception when 404
+	 * @return mixed
 	 */
-	public function put($path, $data = null, $default = null, $associative_return = false)
+	public function put($path, $data = null, $default = null, $associative_return = false, $default_on_404 = true)
 	{
 		try {
 			return $this->call(self::PUT, $path, $data, $associative_return);
 		} catch (StatusCodeException $e) {
-			if ($e->getCode() !== 404) {
+			if ($e->getCode() !== 404 || !$default_on_404) {
 				throw $e;
 			}
 		}
@@ -169,14 +172,15 @@ class Client
 	 * @param array $data
 	 * @param mixed $default
 	 * @param boolean $associative_return
-	 * @return mixwed
+	 * @param boolean $default_on_404 If `false`, throws an exception when 404
+	 * @return mixed
 	 */
-	public function post($path, $data = null, $default = null, $associative_return = false)
+	public function post($path, $data = null, $default = null, $associative_return = false, $default_on_404 = true)
 	{
 		try {
 			return $this->call(self::POST, $path, $data, $associative_return);
 		} catch (StatusCodeException $e) {
-			if ($e->getCode() !== 404) {
+			if ($e->getCode() !== 404 || !$default_on_404) {
 				throw $e;
 			}
 		}
