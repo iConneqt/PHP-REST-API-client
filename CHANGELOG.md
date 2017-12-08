@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0.6 - 2017-12-08
+### Added
+-	Added `tuple` to ListFields for administrator users.
+
 ## 1.0.5 - 2017-09-28
 ### Added
 -	Added parameter `$default_on_404` to clinet calls to disable default on 404.
