@@ -225,5 +225,25 @@ class Iconneqt
 	{
 		return $this->client->put("lists/{$list}/subscribers", $data);
 	}
+	
+	/**
+	 * Create a delivery
+	 * @param array $data
+	 * @return integer delivery id
+	 */
+	public function putDelivery($data)
+	{
+		return (int)$this->client->put("deliveries", $data);
+	}
+	
+	/**
+	 * Add a recipient to a delivery, automatically adding the recipient as an unconfirmed subscriber. 
+	 * @param array $data
+	 * @return integer delivery sent id
+	 */
+	public function postDelivery($delivery, $data)
+	{
+		return (int)$this->client->post("deliveries/{$delivery}/recipients", $data);
+	}
 
 }
