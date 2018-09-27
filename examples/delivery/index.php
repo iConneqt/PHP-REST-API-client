@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This example demonstrates sending email
+ * This example demonstrates sending a delivery
  */
 
 require_once dirname(__DIR__) . '/common.php';
@@ -22,7 +22,7 @@ if ($deliveryid) {
 	$mail = array(
 		'deliveryid'	=> $deliveryid,
 		'emailaddress'	=> "example@website.com", //Address of the recipient
-		'sendate'		=> '', // Date and time when to send. If none given, the email should be sent immediately
+		'sendate'		=> time(), // Date and time when to send. If none given, the email should be sent immediately
 		'fields'		=>	array( // Fields that will be in the newsletter, for example if you add "%%example%%" to your newsletter, it will be replaced with "my custom field'
 			array(
 				'field'	=> 'example',
