@@ -82,7 +82,7 @@ class Subscriber extends AbstractResource
 
 	public function getList()
 	{
-		return $this->iconneqt->getList($listid);
+		return $this->iconneqt->getList($this->listid);
 	}
 
 	public function getFields()
