@@ -9,7 +9,7 @@ namespace Iconneqt\Api\Rest\Resources;
  * @license MIT
  * @author Martijn W. van der Lee 
  */
-class Subscriber extends AbstractResource
+class Subscriber extends AbstractResource implements \JsonSerializable
 {
 
 	private $id;
@@ -33,6 +33,20 @@ class Subscriber extends AbstractResource
 		$this->unsubscribed = $subscriber->unsubscribed;
 		$this->bounced = $subscriber->bounced;
 		$this->listid = $subscriber->list;
+	}
+
+	public function jsonSerialize()
+	{
+		return [
+			'id' => $this->id,
+			'email' => $this->email,
+			'date' => $this->date->format(\DateTime::ISO8601),
+			'code' => $this->code,
+			'confirmed' => $this->confirmed,
+			'unsubscribed' => $this->unsubscribed,
+			'bounced' => $this->bounced,
+			'listid' => $this->listid,
+		];
 	}
 
 	public function getId()

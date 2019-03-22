@@ -9,7 +9,7 @@ namespace Iconneqt\Api\Rest\Resources;
  * @license MIT
  * @author Martijn W. van der Lee 
  */
-class SubscriberField extends AbstractField
+class SubscriberField extends AbstractField implements \JsonSerializable
 {
 
 	private $data;
@@ -21,6 +21,14 @@ class SubscriberField extends AbstractField
 
 		$this->data = $field->data;
 		$this->value = $field->value;
+	}
+
+	public function jsonSerialize()
+	{
+		return [
+			'data' => $this->data,
+			'value' => $this->value,
+		];
 	}
 
 	public function getData()
