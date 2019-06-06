@@ -128,6 +128,19 @@ class Iconneqt
 	}	
 
 	/**
+	 * Add a key/value pair to a checkbox customfield
+	 * @param integer $list
+	 * @param integer $field
+	 * @param string $key
+	 * @param string $value
+	 * @return \Iconneqt\Api\Rest\Resources\ListField|null
+	 */
+	public function patchListField($list, $field, $key, $value)
+	{
+		return $this->client->patch("lists/{$list}/fields/{$field}", ['fieldkey' => $key, 'fieldvalue' => $value]);
+	}
+
+	/**
 	 * Delete a specific field from a list.
 	 * This will not delete the field, but will break the association between
 	 * the field and the list
