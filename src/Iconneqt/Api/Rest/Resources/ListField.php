@@ -9,7 +9,7 @@ namespace Iconneqt\Api\Rest\Resources;
  * @license MIT
  * @author Martijn W. van der Lee 
  */
-class ListField extends AbstractField
+class ListField extends AbstractField implements \JsonSerializable
 {
 
 	private $date;
@@ -31,6 +31,19 @@ class ListField extends AbstractField
 		$this->settings = $field->settings;
 		$this->role = $field->role;
 		$this->tuple = isset($field->tuple) ? (int) $field->tuple : null;
+	}
+
+	public function jsonSerialize()
+	{
+		return [
+			'date' => $this->date->format(\DateTime::ISO8601),
+			'userid' => $this->userid,
+			'default' => $this->default,
+			'required' => $this->required,
+			'settings' => $this->settings,
+			'role' => $this->role,
+			'tuple' => $this->tuple,
+		];
 	}
 
 	public function getDate()

@@ -9,7 +9,7 @@ namespace Iconneqt\Api\Rest\Resources;
  * @license MIT
  * @author Martijn W. van der Lee 
  */
-class MailingList extends AbstractResource
+class MailingList extends AbstractResource implements \JsonSerializable
 {
 
 	private $id;
@@ -25,6 +25,16 @@ class MailingList extends AbstractResource
 		$this->name = $list->name;
 		$this->date = new \DateTime($list->date);
 		$this->userid = $list->user;
+	}
+
+	public function jsonSerialize()
+	{
+		return [
+			'id' => $this->id,
+			'name' => $this->name,
+			'date' => $this->date->format(\DateTime::ISO8601),
+			'userid' => $this->userid,
+		];
 	}
 
 	public function getId()
