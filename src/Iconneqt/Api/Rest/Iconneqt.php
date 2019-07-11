@@ -240,6 +240,17 @@ class Iconneqt
 	}
 	
 	/**
+	 * Get the statistics from a newsletter
+	 * @param integer $newsletterid
+	 * @param array $data
+	 * @return boolean
+	 */
+	public function getNewsletterStats($newsletterid, $data)
+	{
+		return $this->client->get("newsletters/stats/{$newsletterid}", $data);
+	}
+	
+	/**
 	 * Create a delivery
 	 * @param array $data
 	 * @return integer delivery id
