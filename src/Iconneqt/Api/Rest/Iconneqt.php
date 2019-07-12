@@ -245,9 +245,9 @@ class Iconneqt
 	 * @param array $data
 	 * @return boolean
 	 */
-	public function getNewsletterStats($newsletterid, $data)
+	public function getNewsletterStats($newsletterid, $from = null, $till = null)
 	{
-		return $this->client->get("newsletters/stats/{$newsletterid}", $data);
+		return $this->client->get("newsletters/stats/{$newsletterid}?starttime={$from}&endttime={$till}");
 	}
 	
 	/**
