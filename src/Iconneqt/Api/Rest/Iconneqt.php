@@ -39,7 +39,7 @@ class Iconneqt
 	 * @param string $name The name of the field
          * @param string $fieldtype The type of field (date, text, radio, etc)
          * @param integer $listId ID of the list the field should be added to
-	 * @return boolean
+	 * @return \Iconneqt\Api\Rest\Resources\Field|null
 	 */
 	public function addField($name, $fieldtype = 'text', $listId = null)
 	{
@@ -50,7 +50,11 @@ class Iconneqt
 		if ($listId !== null) {
 			$data['listid'] = $listId;
 		}
-		return $this->client->post("fields", $data);
+		$result = $this->client->post("fields", $data);
+		if (isset($result->id)) {
+                    return $this->getField($result->id);
+                }
+                return null;
 	}
 
 	/**
