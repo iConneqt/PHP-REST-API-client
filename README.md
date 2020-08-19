@@ -11,7 +11,7 @@ Copyright &copy; 2016-2017 Advanced CRMMail Technology B.V.
 
 Documentation
 -------------
-The API documentation can be found here: [http://test.iconneqt.nl/api/docs/](http://test.iconneqt.nl/api/docs/).
+The API documentation can be found here: [http://demo.iconneqt.nl/api/docs/](http://test.iconneqt.nl/api/docs/).
 
 Installation
 ------------
