@@ -32,7 +32,30 @@ class Iconneqt
 			$fields[] = new Resources\Field($this, $field);
 		}
 		return $fields;
-	}	
+	}
+
+	/**
+	 * Add a new field
+	 * @param string $name The name of the field
+         * @param string $fieldtype The type of field (date, text, radio, etc)
+         * @param integer $listId ID of the list the field should be added to
+	 * @return \Iconneqt\Api\Rest\Resources\Field|null
+	 */
+	public function addField($name, $fieldtype = 'text', $listId = null)
+	{
+		$data = [
+			'name' => $name,
+			'fieldtype' => $fieldtype,
+		];
+		if ($listId !== null) {
+			$data['listid'] = $listId;
+		}
+		$result = $this->client->post("fields", $data);
+		if (isset($result->id)) {
+                    return $this->getField($result->id);
+                }
+                return null;
+	}
 
 	/**
 	 * Get the number of fields that can be accessed using the credentials used.
